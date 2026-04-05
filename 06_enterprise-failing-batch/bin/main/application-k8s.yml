@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://mssql-service.ad-batch.svc.cluster.local:1433;databaseName=ad_batch_demo;encrypt=false;trustServerCertificate=true
+    username: sa
+    password: BatchDemo2026!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

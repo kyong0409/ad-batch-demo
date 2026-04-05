@@ -1,0 +1,26 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MSSQLServer
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+  sql:
+    init:
+      mode: always
+
+batch:
+  chunk-size: 10
+  export:
+    output-dir: ./build/test-output
+
+logging:
+  level:
+    org.springframework.batch: DEBUG
+    com.demo.enterprisebatch: DEBUG

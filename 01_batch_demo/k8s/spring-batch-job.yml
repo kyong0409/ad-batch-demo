@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: daily-ad-stats-job
+  namespace: ad-batch
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+        - name: spring-batch
+          image: ad-batch-demo:latest
+          imagePullPolicy: Never
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+      restartPolicy: Never

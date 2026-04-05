@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: order-sync-job
+  namespace: ad-batch
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: enterprise-failing-batch
+          image: enterprise-failing-batch:latest
+          imagePullPolicy: Never
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+      restartPolicy: Never

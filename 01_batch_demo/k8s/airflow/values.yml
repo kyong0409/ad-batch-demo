@@ -1,0 +1,91 @@
+executor: "LocalExecutor"
+
+dags:
+  persistence:
+    enabled: false
+  gitSync:
+    enabled: false
+
+# Airflow 3.x components — use subPath to avoid ConfigMap symlink recursive loop
+scheduler:
+  extraVolumes:
+    - name: dag-configmap
+      configMap:
+        name: ad-batch-dags
+  extraVolumeMounts:
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/ad_batch_dag.py
+      subPath: ad_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/data_sync_dag.py
+      subPath: data_sync_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/enterprise_batch_dag.py
+      subPath: enterprise_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/order_sync_dag.py
+      subPath: order_sync_dag.py
+      readOnly: true
+
+dagProcessor:
+  extraVolumes:
+    - name: dag-configmap
+      configMap:
+        name: ad-batch-dags
+  extraVolumeMounts:
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/ad_batch_dag.py
+      subPath: ad_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/data_sync_dag.py
+      subPath: data_sync_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/enterprise_batch_dag.py
+      subPath: enterprise_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/order_sync_dag.py
+      subPath: order_sync_dag.py
+      readOnly: true
+
+apiServer:
+  service:
+    type: NodePort
+  extraVolumes:
+    - name: dag-configmap
+      configMap:
+        name: ad-batch-dags
+  extraVolumeMounts:
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/ad_batch_dag.py
+      subPath: ad_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/data_sync_dag.py
+      subPath: data_sync_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/enterprise_batch_dag.py
+      subPath: enterprise_batch_dag.py
+      readOnly: true
+    - name: dag-configmap
+      mountPath: /opt/airflow/dags/order_sync_dag.py
+      subPath: order_sync_dag.py
+      readOnly: true
+
+flower:
+  enabled: false
+
+postgresql:
+  enabled: true
+
+config:
+  core:
+    load_examples: "False"
+  kubernetes:
+    namespace: "ad-batch"

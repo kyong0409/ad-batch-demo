@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-api
+  namespace: ad-batch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: batch-api
+  template:
+    metadata:
+      labels:
+        app: batch-api
+    spec:
+      containers:
+        - name: batch-api
+          image: batch-api:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: batch-api-service
+  namespace: ad-batch
+spec:
+  selector:
+    app: batch-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

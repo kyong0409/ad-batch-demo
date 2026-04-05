@@ -1,0 +1,25 @@
+{
+  "name": "dscore-batch-ui",
+  "version": "1.0.0",
+  "description": "DSCore Batch Management UI",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.0",
+    "msw": "^2.12.14",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.5.31",
+    "vue-router": "^5.0.4",
+    "pinia": "^3.0.4",
+    "axios": "1.14.0",
+    "dayjs": "^1.11.19"
+  }
+}

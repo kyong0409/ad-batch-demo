@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.batchapi.batch.schedule.mapper.BatchSclgMapper">
+
+    <sql id="whereClause">
+        <where>
+            <if test="jobGroup != null and jobGroup != ''">
+                AND obsb.JOB_GROUP = #{jobGroup}
+            </if>
+            <if test="useYn != null and useYn != ''">
+                AND obsb.USE_YN = #{useYn}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM om_batch_sclg_bas obsb
+        <include refid="whereClause"/>
+    </select>
+
+    <select id="select" resultType="com.demo.batchapi.batch.schedule.dto.BatchSclgDetails">
+        SELECT ROW_NUMBER() OVER (ORDER BY obsb.reg_dt DESC) AS rowNum,
+               obsb.JOB_NM AS jobNm,
+               obsb.JOB_GROUP AS jobGroup,
+               obsb.JOB_DESC AS jobDesc,
+               ISNULL(obsb.PARAM_SBST, '') AS paramSbst,
+               obsb.PERD_SBST AS perdSbst,
+               obsb.USE_YN AS useYn,
+               CASE obsb.USE_YN WHEN 'Y' THEN N'사용' WHEN 'N' THEN N'미사용' ELSE '' END AS useYnNm,
+               obsb.REGR_ID AS regrId,
+               obsb.REGR_ID AS regrNm,
+               obsb.REG_DT AS regDt
+        FROM om_batch_sclg_bas obsb
+        <include refid="whereClause"/>
+        ORDER BY obsb.reg_dt DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="selectOne" resultType="com.demo.batchapi.batch.schedule.dto.BatchSclgDetails">
+        SELECT obsb.JOB_NM AS jobNm,
+               obsb.JOB_GROUP AS jobGroup,
+               obsb.JOB_DESC AS jobDesc,
+               obsb.PARAM_SBST AS paramSbst,
+               obsb.PERD_SBST AS perdSbst,
+               obsb.USE_YN AS useYn,
+               obsb.REGR_ID AS regrId,
+               obsb.REG_DT AS regDt
+        FROM om_batch_sclg_bas obsb
+        WHERE obsb.JOB_NM = #{jobNm}
+          AND obsb.JOB_GROUP = #{jobGroup}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO om_batch_sclg_bas
+            (JOB_NM, JOB_GROUP, JOB_DESC, PARAM_SBST, PERD_SBST, USE_YN, REGR_ID, REG_DT, REG_PGM)
+        VALUES (TRIM(#{jobNm}), TRIM(#{jobGroup}), TRIM(#{jobDesc}), TRIM(#{paramSbst}),
+                TRIM(#{perdSbst}), TRIM(#{useYn}), 'system', GETDATE(), 'BatchSclgService')
+    </insert>
+
+    <update id="update">
+        UPDATE om_batch_sclg_bas
+        SET JOB_GROUP  = TRIM(#{data.jobGroup}),
+            JOB_DESC   = TRIM(#{data.jobDesc}),
+            PARAM_SBST = TRIM(#{data.paramSbst}),
+            PERD_SBST  = TRIM(#{data.perdSbst}),
+            USE_YN     = TRIM(#{data.useYn}),
+            AMDR_ID    = 'system',
+            AMD_DT     = GETDATE(),
+            AMD_PGM    = 'BatchSclgService'
+        WHERE JOB_NM    = TRIM(#{jobNm})
+          AND JOB_GROUP = TRIM(#{jobGroup})
+    </update>
+</mapper>

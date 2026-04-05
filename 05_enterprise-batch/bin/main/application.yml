@@ -1,0 +1,21 @@
+spring:
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: never
+  sql:
+    init:
+      mode: always
+      platform: mssql
+      continue-on-error: true
+
+batch:
+  chunk-size: 100
+  export:
+    output-dir: ./output
+
+logging:
+  level:
+    org.springframework.batch: INFO
+    com.demo.enterprisebatch: DEBUG

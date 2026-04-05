@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.batchapi.batch.history.mapper.BatchHstMapper">
+
+    <sql id="whereClause">
+        <where>
+            <if test="jobName != null and jobName != ''">
+                AND BJI.JOB_NAME LIKE '%' + #{jobName} + '%'
+            </if>
+            <if test="jobInstanceId != null">
+                AND BJI.JOB_INSTANCE_ID = #{jobInstanceId}
+            </if>
+            <if test="jobExecutionId != null">
+                AND BJE.JOB_EXECUTION_ID = #{jobExecutionId}
+            </if>
+            <if test="status != null and status != ''">
+                AND BJE.STATUS = #{status}
+            </if>
+            <if test="exitCode != null and exitCode != ''">
+                AND BJE.EXIT_CODE = #{exitCode}
+            </if>
+            <if test="startTime != null and endTime != null">
+                AND BJE.START_TIME >= #{startTime}
+                AND BJE.END_TIME &lt;= #{endTime}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM BATCH_JOB_EXECUTION BJE
+        LEFT JOIN BATCH_JOB_INSTANCE BJI ON BJE.JOB_INSTANCE_ID = BJI.JOB_INSTANCE_ID
+        <include refid="whereClause"/>
+    </select>
+
+    <select id="select" resultType="com.demo.batchapi.batch.history.dto.BatchHstJobDetails">
+        SELECT ROW_NUMBER() OVER(ORDER BY BJE.CREATE_TIME DESC) AS rowNum,
+               BJI.JOB_INSTANCE_ID AS jobInstanceId,
+               BJI.JOB_NAME AS jobName,
+               BJE.JOB_EXECUTION_ID AS jobExecutionId,
+               BJE.START_TIME AS startTime,
+               BJE.END_TIME AS endTime,
+               BJE.STATUS AS status,
+               BJE.EXIT_CODE AS exitCode,
+               BJE.EXIT_MESSAGE AS exitMessage
+        FROM BATCH_JOB_EXECUTION BJE
+        LEFT JOIN BATCH_JOB_INSTANCE BJI ON BJE.JOB_INSTANCE_ID = BJI.JOB_INSTANCE_ID
+        <include refid="whereClause"/>
+        ORDER BY BJE.CREATE_TIME DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <select id="selectBatchHstStep" resultType="com.demo.batchapi.batch.history.dto.BatchHstStepDetails">
+        SELECT STEP_EXECUTION_ID AS stepExecutionId,
+               STEP_NAME AS stepName,
+               START_TIME AS startTime,
+               END_TIME AS endTime,
+               STATUS AS status,
+               COMMIT_COUNT AS commitCount,
+               READ_COUNT AS readCount,
+               FILTER_COUNT AS filterCount,
+               WRITE_COUNT AS writeCount,
+               READ_SKIP_COUNT AS readSkipCount,
+               WRITE_SKIP_COUNT AS writeSkipCount,
+               PROCESS_SKIP_COUNT AS processSkipCount,
+               ROLLBACK_COUNT AS rollbackCount,
+               EXIT_CODE AS exitCode,
+               EXIT_MESSAGE AS exitMessage
+        FROM BATCH_STEP_EXECUTION
+        WHERE JOB_EXECUTION_ID = #{jobExecutionId}
+    </select>
+
+    <select id="selectBatchHstParam" resultType="com.demo.batchapi.batch.history.dto.BatchHstJobParamDetails">
+        SELECT JOB_EXECUTION_ID AS jobExecutionId,
+               PARAMETER_NAME AS parameterName,
+               PARAMETER_TYPE AS parameterType,
+               PARAMETER_VALUE AS parameterValue
+        FROM BATCH_JOB_EXECUTION_PARAMS
+        WHERE JOB_EXECUTION_ID = #{jobExecutionId}
+    </select>
+</mapper>

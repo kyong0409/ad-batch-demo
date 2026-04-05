@@ -1,0 +1,44 @@
+/**
+ * 뱃지/상태 스타일
+ * DSCore Token System 기반
+ */
+
+/* 상태 뱃지 */
+.status-badge {
+  display: inline-block;
+  padding: var(--dsx-space-2) 10px;
+  border-radius: var(--dsx-radius-max);
+  font-size: var(--dsx-font-size-caption2);
+  font-weight: var(--dsx-font-weight-semibold);
+}
+
+.status-active {
+  background: var(--dsx-color-info-fill-neutral);
+  color: var(--dsx-color-info-text-default);
+}
+
+.status-inactive {
+  background: var(--dsx-color-negative-fill-neutral);
+  color: var(--dsx-color-negative-text-default);
+}
+
+/* 성공/경고/에러/정보 뱃지 */
+.badge-success {
+  background: var(--dsx-color-positive-fill-neutral);
+  color: var(--dsx-color-positive-text-default);
+}
+
+.badge-warning {
+  background: var(--dsx-color-caution-fill-neutral);
+  color: var(--dsx-color-caution-text-default);
+}
+
+.badge-error {
+  background: var(--dsx-color-negative-fill-neutral);
+  color: var(--dsx-color-negative-text-default);
+}
+
+.badge-info {
+  background: var(--dsx-color-info-fill-neutral);
+  color: var(--dsx-color-info-text-default);
+}

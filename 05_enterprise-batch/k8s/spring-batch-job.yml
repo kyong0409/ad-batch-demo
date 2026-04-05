@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: enterprise-ad-stats-job
+  namespace: ad-batch
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+        - name: enterprise-batch
+          image: enterprise-batch:latest
+          imagePullPolicy: Never
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+      restartPolicy: Never

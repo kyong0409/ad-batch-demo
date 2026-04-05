@@ -1,0 +1,372 @@
+/**
+ * DSCore Design Token System
+ * Based on: dscore-color-tokens.html (--dsx-color-{category}-{role})
+ * Supports: Light / Dark mode
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════
+     1. PRIMARY — 주요 인터랙션, CTA, 선택 상태
+     ═══════════════════════════════════════════════ */
+  --dsx-color-primary-fill-default: #156ff7;
+  --dsx-color-primary-fill-hover: #4891ff;
+  --dsx-color-primary-fill-neutral: #e8f1ff;
+  --dsx-color-primary-border-default: #156ff7;
+  --dsx-color-primary-border-neutral: #66a3ff;
+  --dsx-color-primary-text-default: #186ae8;
+  --dsx-color-primary-text-neutral: #4891ff;
+  --dsx-color-primary-icon-default: #156ff7;
+  --dsx-color-primary-surface-default: #f2f5f9;
+
+  /* ═══════════════════════════════════════════════
+     2. NEUTRAL — 기본 텍스트, 배경, 테두리
+     ═══════════════════════════════════════════════ */
+  --dsx-color-neutral-surface-default: #ffffff;
+  --dsx-color-neutral-surface-alternative: #f7f7f8;
+  --dsx-color-neutral-text-default: #171719;
+  --dsx-color-neutral-text-neutral: rgba(46, 47, 51, 0.88);
+  --dsx-color-neutral-text-alternative: rgba(55, 56, 60, 0.61);
+  --dsx-color-neutral-text-strong: #000000;
+  --dsx-color-neutral-border-default: rgba(112, 115, 124, 0.35);
+  --dsx-color-neutral-border-alternative: rgba(112, 115, 124, 0.16);
+  --dsx-color-neutral-fill-default: rgba(112, 115, 124, 0.22);
+  --dsx-color-neutral-fill-alternative: rgba(112, 115, 124, 0.08);
+  --dsx-color-neutral-icon-default: #171719;
+
+  /* ═══════════════════════════════════════════════
+     3. INTERACTION — 비활성, 비가용, 딤 처리
+     ═══════════════════════════════════════════════ */
+  --dsx-color-interaction-border-disabled: #dbdcdf;
+  --dsx-color-interaction-border-inactive: #c2c4c8;
+  --dsx-color-interaction-text-disabled: rgba(55, 56, 60, 0.35);
+  --dsx-color-interaction-text-inactive: #989ba2;
+  --dsx-color-interaction-surface-disabled: #f4f4f5;
+  --dsx-color-interaction-dimmer: rgba(23, 23, 25, 0.52);
+
+  /* ═══════════════════════════════════════════════
+     4. SEMANTIC STATES — positive, negative, caution, info
+     ═══════════════════════════════════════════════ */
+
+  /* Positive (성공, 완료) */
+  --dsx-color-positive-fill-default: #00bf40;
+  --dsx-color-positive-fill-neutral: #d9ffe6;
+  --dsx-color-positive-text-default: #009632;
+  --dsx-color-positive-border-default: #00bf40;
+
+  /* Negative (오류, 삭제) */
+  --dsx-color-negative-fill-default: #ff4242;
+  --dsx-color-negative-fill-neutral: #feecec;
+  --dsx-color-negative-text-default: #e52222;
+  --dsx-color-negative-border-default: #ff4242;
+
+  /* Caution (경고, 주의) */
+  --dsx-color-caution-fill-default: #ff9200;
+  --dsx-color-caution-fill-neutral: #fef4e6;
+  --dsx-color-caution-text-default: #d47800;
+
+  /* Info (정보, 안내) */
+  --dsx-color-info-fill-default: #0066ff;
+  --dsx-color-info-fill-neutral: #eaf2fe;
+  --dsx-color-info-text-default: #0054d1;
+
+  /* ═══════════════════════════════════════════════
+     5. EXTENDED COLORS — lime, orange, cyan, sky, violet, pink
+     ═══════════════════════════════════════════════ */
+  --dsx-color-lime-fill-default: #58cf04;
+  --dsx-color-lime-text-default: #48ad00;
+  --dsx-color-lime-fill-neutral: #e6ffd4;
+
+  --dsx-color-orange-fill-default: #ff5e00;
+  --dsx-color-orange-text-default: #cc4b00;
+  --dsx-color-orange-fill-neutral: #feeee5;
+
+  --dsx-color-cyan-fill-default: #00bdde;
+  --dsx-color-cyan-text-default: #0098b2;
+  --dsx-color-cyan-fill-neutral: #defaff;
+
+  --dsx-color-sky-fill-default: #00aeff;
+  --dsx-color-sky-text-default: #008dcf;
+  --dsx-color-sky-fill-neutral: #e5f6fe;
+
+  --dsx-color-violet-fill-default: #6541f2;
+  --dsx-color-violet-text-default: #4f29e5;
+  --dsx-color-violet-fill-neutral: #f0ecfe;
+
+  --dsx-color-pink-fill-default: #f553da;
+  --dsx-color-pink-text-default: #d331b8;
+  --dsx-color-pink-fill-neutral: #feecfb;
+
+  /* ═══════════════════════════════════════════════
+     6. INVERSE & STATIC — 모드 무관 고정/반전
+     ═══════════════════════════════════════════════ */
+  --dsx-color-static-white: #ffffff;
+  --dsx-color-static-black: #000000;
+  --dsx-color-static-dark: #171719;
+  --dsx-color-inverse-surface: #1b1c1e;
+  --dsx-color-inverse-text: #f7f7f8;
+  --dsx-color-inverse-icon: #f7f7f8;
+  --dsx-color-normal-fill-default: #46474c;
+  --dsx-color-normal-text-default: #5a5c63;
+
+  /* ═══════════════════════════════════════════════
+     7. TYPOGRAPHY SCALE — --dsx-font-size-*
+     ═══════════════════════════════════════════════ */
+  --dsx-font-size-display1: 3.5rem;    /* 56px */
+  --dsx-font-size-display2: 2.5rem;    /* 40px */
+  --dsx-font-size-heading1: 2.25rem;   /* 36px */
+  --dsx-font-size-heading2: 1.75rem;   /* 28px */
+  --dsx-font-size-heading3: 1.5rem;    /* 24px */
+  --dsx-font-size-title1: 1.375rem;    /* 22px */
+  --dsx-font-size-title2: 1.25rem;     /* 20px */
+  --dsx-font-size-title3: 1.125rem;    /* 18px */
+  --dsx-font-size-body1: 1rem;         /* 16px — base */
+  --dsx-font-size-body2: 0.9375rem;    /* 15px */
+  --dsx-font-size-body3: 0.875rem;     /* 14px */
+  --dsx-font-size-label2: 0.8125rem;   /* 13px */
+  --dsx-font-size-caption1: 0.75rem;   /* 12px */
+  --dsx-font-size-caption2: 0.6875rem; /* 11px */
+
+  /* ═══════════════════════════════════════════════
+     8. FONT WEIGHT — --dsx-font-weight-*
+     ═══════════════════════════════════════════════ */
+  --dsx-font-weight-light: 300;
+  --dsx-font-weight-regular: 400;
+  --dsx-font-weight-medium: 500;
+  --dsx-font-weight-semibold: 600;
+  --dsx-font-weight-bold: 700;
+
+  /* ═══════════════════════════════════════════════
+     9. BORDER RADIUS — --dsx-radius-*
+     ═══════════════════════════════════════════════ */
+  --dsx-radius-none: 0px;
+  --dsx-radius-small: 2px;
+  --dsx-radius-base: 4px;
+  --dsx-radius-large: 6px;
+  --dsx-radius-xlarge: 8px;
+  --dsx-radius-max: 1000px;
+
+  /* ═══════════════════════════════════════════════
+     10. SPACING SCALE — --dsx-space-*
+     ═══════════════════════════════════════════════ */
+  --dsx-space-1: 2px;
+  --dsx-space-2: 4px;
+  --dsx-space-3: 8px;
+  --dsx-space-4: 12px;
+  --dsx-space-5: 16px;
+  --dsx-space-6: 20px;
+  --dsx-space-7: 24px;
+  --dsx-space-8: 28px;
+  --dsx-space-9: 32px;
+  --dsx-space-10: 40px;
+  --dsx-space-11: 48px;
+  --dsx-space-12: 56px;
+
+  /* ═══════════════════════════════════════════════
+     11. SHADOWS
+     ═══════════════════════════════════════════════ */
+  --dsx-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --dsx-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --dsx-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ═══════════════════════════════════════════════
+     12. TRANSITIONS
+     ═══════════════════════════════════════════════ */
+  --dsx-transition-fast: 0.15s ease;
+  --dsx-transition-normal: 0.2s ease;
+
+  /* ═══════════════════════════════════════════════
+     13. Z-INDEX
+     ═══════════════════════════════════════════════ */
+  --dsx-z-dropdown: 100;
+  --dsx-z-modal: 1000;
+  --dsx-z-toast: 1100;
+
+  /* ═══════════════════════════════════════════════
+     BACKWARD COMPATIBILITY ALIASES
+     기존 변수명 → DSCore 토큰 매핑
+     (점진적 마이그레이션 후 제거 가능)
+     ═══════════════════════════════════════════════ */
+
+  /* Primary */
+  --color-primary: var(--dsx-color-primary-fill-default);
+  --color-primary-hover: var(--dsx-color-primary-fill-hover);
+  --color-primary-light: var(--dsx-color-primary-fill-neutral);
+  --gradient-primary: var(--dsx-color-primary-fill-default);
+  --dsx-color-surface-brand: var(--dsx-color-primary-fill-default);
+
+  /* Text */
+  --color-text-primary: var(--dsx-color-neutral-text-default);
+  --color-text-secondary: var(--dsx-color-neutral-text-neutral);
+  --color-text-muted: var(--dsx-color-neutral-text-alternative);
+  --color-text-light: var(--dsx-color-interaction-text-inactive);
+  --color-text-placeholder: var(--dsx-color-interaction-text-inactive);
+
+  /* Background */
+  --color-bg-page: var(--dsx-color-neutral-surface-alternative);
+  --color-bg-card: var(--dsx-color-neutral-surface-default);
+  --color-bg-input: var(--dsx-color-neutral-surface-default);
+  --color-bg-disabled: var(--dsx-color-interaction-surface-disabled);
+  --color-bg-hover: var(--dsx-color-primary-fill-neutral);
+  --color-bg-selected: var(--dsx-color-primary-surface-default);
+  --color-bg-table-header: var(--dsx-color-neutral-surface-alternative);
+
+  /* Border */
+  --color-border: var(--dsx-color-neutral-border-default);
+  --color-border-light: var(--dsx-color-neutral-border-alternative);
+  --color-border-focus: var(--dsx-color-primary-border-default);
+
+  /* Status */
+  --color-success: var(--dsx-color-positive-fill-default);
+  --color-warning: var(--dsx-color-caution-fill-default);
+  --color-error: var(--dsx-color-negative-fill-default);
+  --color-info: var(--dsx-color-info-fill-default);
+
+  /* Badge */
+  --color-badge-active-bg: var(--dsx-color-info-fill-neutral);
+  --color-badge-active-text: var(--dsx-color-info-text-default);
+  --color-badge-inactive-bg: var(--dsx-color-negative-fill-neutral);
+  --color-badge-inactive-text: var(--dsx-color-negative-text-default);
+
+  /* Shadow */
+  --shadow-sm: var(--dsx-shadow-sm);
+  --shadow-md: var(--dsx-shadow-md);
+  --shadow-lg: var(--dsx-shadow-lg);
+
+  /* Radius */
+  --radius-sm: var(--dsx-radius-base);
+  --radius-md: var(--dsx-radius-xlarge);
+  --radius-lg: var(--dsx-radius-xlarge);
+
+  /* Font Size */
+  --font-size-xs: var(--dsx-font-size-caption2);
+  --font-size-sm: var(--dsx-font-size-label2);
+  --font-size-md: var(--dsx-font-size-body3);
+  --font-size-lg: var(--dsx-font-size-body1);
+  --font-size-xl: var(--dsx-font-size-title2);
+  --font-size-2xl: var(--dsx-font-size-heading3);
+
+  /* Font Weight */
+  --font-weight-normal: var(--dsx-font-weight-regular);
+  --font-weight-medium: var(--dsx-font-weight-medium);
+  --font-weight-semibold: var(--dsx-font-weight-semibold);
+  --font-weight-bold: var(--dsx-font-weight-bold);
+
+  /* Spacing */
+  --spacing-xs: var(--dsx-space-2);
+  --spacing-sm: var(--dsx-space-3);
+  --spacing-md: var(--dsx-space-5);
+  --spacing-lg: var(--dsx-space-7);
+  --spacing-xl: var(--dsx-space-9);
+
+  /* Transition */
+  --transition-fast: var(--dsx-transition-fast);
+  --transition-normal: var(--dsx-transition-normal);
+
+  /* Z-Index */
+  --z-dropdown: var(--dsx-z-dropdown);
+  --z-modal: var(--dsx-z-modal);
+  --z-toast: var(--dsx-z-toast);
+}
+
+/* ═══════════════════════════════════════════════
+   DARK MODE
+   html.dark 클래스 또는 시스템 설정으로 활성화
+   ═══════════════════════════════════════════════ */
+:root.dark {
+  /* ── Primary — 채도를 낮추고 명도를 올려 다크 배경 가독성 확보 (원칙①) ── */
+  --dsx-color-primary-fill-default: #4891ff;
+  --dsx-color-primary-fill-hover: #6ea8ff;
+  --dsx-color-primary-fill-neutral: #1a2744;
+  --dsx-color-primary-border-default: #4891ff;
+  --dsx-color-primary-border-neutral: #2a4a7f;
+  --dsx-color-primary-text-default: #6ea8ff;
+  --dsx-color-primary-text-neutral: #4891ff;
+  --dsx-color-primary-icon-default: #4891ff;
+  --dsx-color-primary-surface-default: #1e2530;
+
+  /* ── Neutral — 밝기 기반 Elevation 계층 구조 (원칙②) ── */
+  /*   바탕(page): #121212 → 카드(surface): #1e1e1e → 올라온 요소: #2c2c2c */
+  --dsx-color-neutral-surface-default: #1e1e1e;
+  --dsx-color-neutral-surface-alternative: #121212;
+  --dsx-color-neutral-text-default: rgba(255, 255, 255, 0.87);
+  --dsx-color-neutral-text-neutral: rgba(255, 255, 255, 0.74);
+  --dsx-color-neutral-text-alternative: rgba(255, 255, 255, 0.60);
+  --dsx-color-neutral-text-strong: #ffffff;
+  --dsx-color-neutral-border-default: rgba(255, 255, 255, 0.16);
+  --dsx-color-neutral-border-alternative: rgba(255, 255, 255, 0.08);
+  --dsx-color-neutral-fill-default: rgba(255, 255, 255, 0.12);
+  --dsx-color-neutral-fill-alternative: rgba(255, 255, 255, 0.06);
+  --dsx-color-neutral-icon-default: rgba(255, 255, 255, 0.87);
+
+  /* ── Interaction — 텍스트 대비 불투명도 규칙 (원칙③) ── */
+  /*   High: 0.87, Medium: 0.60, Disabled: 0.38 */
+  --dsx-color-interaction-border-disabled: #333438;
+  --dsx-color-interaction-border-inactive: #3e3f44;
+  --dsx-color-interaction-text-disabled: rgba(255, 255, 255, 0.38);
+  --dsx-color-interaction-text-inactive: rgba(255, 255, 255, 0.50);
+  --dsx-color-interaction-surface-disabled: #2c2c2c;
+  --dsx-color-interaction-dimmer: rgba(0, 0, 0, 0.72);
+
+  /* ── Semantic States ── */
+  /* Positive */
+  --dsx-color-positive-fill-default: #34d058;
+  --dsx-color-positive-fill-neutral: #0d2818;
+  --dsx-color-positive-text-default: #56d364;
+  --dsx-color-positive-border-default: #34d058;
+
+  /* Negative */
+  --dsx-color-negative-fill-default: #f85149;
+  --dsx-color-negative-fill-neutral: #3d1014;
+  --dsx-color-negative-text-default: #ff7b72;
+  --dsx-color-negative-border-default: #f85149;
+
+  /* Caution */
+  --dsx-color-caution-fill-default: #d29922;
+  --dsx-color-caution-fill-neutral: #3d2e00;
+  --dsx-color-caution-text-default: #e3b341;
+
+  /* Info */
+  --dsx-color-info-fill-default: #58a6ff;
+  --dsx-color-info-fill-neutral: #0d1d33;
+  --dsx-color-info-text-default: #79c0ff;
+
+  /* ── Extended Colors — 다크 배경 가독성을 위해 밝기 상향 ── */
+  --dsx-color-lime-fill-default: #7ce838;
+  --dsx-color-lime-text-default: #7ce838;
+  --dsx-color-lime-fill-neutral: #1a2e0a;
+
+  --dsx-color-orange-fill-default: #ff8a4c;
+  --dsx-color-orange-text-default: #ff8a4c;
+  --dsx-color-orange-fill-neutral: #331a00;
+
+  --dsx-color-cyan-fill-default: #39d2f0;
+  --dsx-color-cyan-text-default: #39d2f0;
+  --dsx-color-cyan-fill-neutral: #002e36;
+
+  --dsx-color-sky-fill-default: #56c4ff;
+  --dsx-color-sky-text-default: #56c4ff;
+  --dsx-color-sky-fill-neutral: #001f33;
+
+  --dsx-color-violet-fill-default: #9580ff;
+  --dsx-color-violet-text-default: #9580ff;
+  --dsx-color-violet-fill-neutral: #1e1440;
+
+  --dsx-color-pink-fill-default: #f78ae0;
+  --dsx-color-pink-text-default: #f78ae0;
+  --dsx-color-pink-fill-neutral: #3d0e34;
+
+  /* ── Inverse & Static (반전) ── */
+  --dsx-color-inverse-surface: #f7f7f8;
+  --dsx-color-inverse-text: #171719;
+  --dsx-color-inverse-icon: #171719;
+  --dsx-color-normal-fill-default: #8b8d95;
+  --dsx-color-normal-text-default: #a0a3ab;
+
+  /* ── Shadows — 다크 모드에서 그림자 강화 (원칙②) ── */
+  --dsx-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --dsx-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.36);
+  --dsx-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.48);
+
+  /* ── Brand Surface — 로그인 등 브랜드 배경 (원칙②) ── */
+  --dsx-color-surface-brand: #0d1b2a;
+}

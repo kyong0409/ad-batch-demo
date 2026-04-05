@@ -1,0 +1,16 @@
+spring:
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: never
+  sql:
+    init:
+      mode: always
+      platform: mssql
+      continue-on-error: true
+
+logging:
+  level:
+    org.springframework.batch: INFO
+    com.demo.adbatch: DEBUG

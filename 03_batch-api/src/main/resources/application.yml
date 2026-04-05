@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=ad_batch_demo;encrypt=false;trustServerCertificate=true
+    username: sa
+    password: BatchDemo2026!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-mssql.sql
+      continue-on-error: true
+
+mybatis:
+  mapper-locations: classpath*:com/demo/batchapi/**/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+
+logging:
+  level:
+    com.demo.batchapi: DEBUG

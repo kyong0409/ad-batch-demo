@@ -1,0 +1,19 @@
+spring:
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: never
+  sql:
+    init:
+      mode: never
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=ad_batch_demo;encrypt=false;trustServerCertificate=true
+    username: sa
+    password: BatchDemo2026!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+logging:
+  level:
+    org.springframework.batch: INFO
+    com.demo.failbatch: DEBUG

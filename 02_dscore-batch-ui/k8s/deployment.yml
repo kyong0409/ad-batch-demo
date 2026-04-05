@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-ui
+  namespace: ad-batch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: batch-ui
+  template:
+    metadata:
+      labels:
+        app: batch-ui
+    spec:
+      containers:
+        - name: batch-ui
+          image: batch-ui:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: batch-ui-service
+  namespace: ad-batch
+spec:
+  selector:
+    app: batch-ui
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

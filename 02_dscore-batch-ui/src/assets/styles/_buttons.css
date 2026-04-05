@@ -1,0 +1,148 @@
+/**
+ * 버튼 공통 스타일
+ * DSCore Token System 기반
+ */
+
+/* 버튼 기본 스타일 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dsx-space-2);
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--dsx-radius-base);
+  font-size: var(--dsx-font-size-body3);
+  font-weight: var(--dsx-font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--dsx-transition-normal);
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  background: var(--dsx-color-interaction-surface-disabled);
+  color: var(--dsx-color-interaction-text-disabled);
+  border-color: var(--dsx-color-interaction-border-disabled);
+  cursor: not-allowed;
+}
+
+/* Primary 버튼 */
+.btn-primary {
+  background: var(--dsx-color-primary-fill-default);
+  color: var(--dsx-color-static-white);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--dsx-color-primary-fill-hover);
+}
+
+/* Secondary 버튼 */
+.btn-secondary {
+  background: var(--dsx-color-neutral-surface-default);
+  color: var(--dsx-color-primary-text-default);
+  border: 1px solid var(--dsx-color-primary-border-default);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--dsx-color-primary-fill-neutral);
+}
+
+/* Default 버튼 */
+.btn-default {
+  background: var(--dsx-color-neutral-surface-default);
+  color: var(--dsx-color-neutral-text-neutral);
+  border: 1px solid var(--dsx-color-neutral-border-default);
+}
+
+.btn-default:hover:not(:disabled) {
+  background: var(--dsx-color-neutral-surface-alternative);
+}
+
+/* Danger 버튼 */
+.btn-danger {
+  background: var(--dsx-color-negative-fill-default);
+  color: var(--dsx-color-static-white);
+}
+
+.btn-danger:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* 검색 버튼 */
+.btn-search {
+  background: var(--dsx-color-primary-fill-default);
+  color: var(--dsx-color-static-white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--dsx-radius-base);
+  font-size: var(--dsx-font-size-body3);
+  font-weight: var(--dsx-font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--dsx-transition-normal);
+}
+
+.btn-search:hover {
+  background: var(--dsx-color-primary-fill-hover);
+}
+
+/* 초기화 버튼 */
+.btn-reset {
+  background: var(--dsx-color-neutral-surface-alternative);
+  color: var(--dsx-color-neutral-text-alternative);
+  padding: 10px 20px;
+  border: 1px solid var(--dsx-color-neutral-border-default);
+  border-radius: var(--dsx-radius-base);
+  font-size: var(--dsx-font-size-body3);
+  font-weight: var(--dsx-font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--dsx-transition-normal);
+}
+
+.btn-reset:hover {
+  background: var(--dsx-color-neutral-fill-default);
+}
+
+/* 등록 버튼 */
+.btn-register {
+  padding: 8px 20px;
+  background: var(--dsx-color-primary-fill-default);
+  color: var(--dsx-color-static-white);
+  border: none;
+  border-radius: var(--dsx-radius-base);
+  font-size: var(--dsx-font-size-body3);
+  font-weight: var(--dsx-font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--dsx-transition-normal);
+}
+
+.btn-register:hover {
+  background: var(--dsx-color-primary-fill-hover);
+}
+
+/* 엑셀 버튼 */
+.btn-excel {
+  padding: 8px 16px;
+  background: var(--dsx-color-neutral-surface-default);
+  color: var(--dsx-color-neutral-text-neutral);
+  border: 1px solid var(--dsx-color-neutral-border-default);
+  border-radius: var(--dsx-radius-base);
+  font-size: var(--dsx-font-size-body3);
+  font-weight: var(--dsx-font-weight-semibold);
+  cursor: pointer;
+  transition: background var(--dsx-transition-normal);
+}
+
+.btn-excel:hover {
+  background: var(--dsx-color-neutral-surface-alternative);
+}
+
+/* 버튼 사이즈 */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: var(--dsx-font-size-label2);
+}
+
+.btn-lg {
+  padding: 12px 24px;
+  font-size: var(--dsx-font-size-body1);
+}

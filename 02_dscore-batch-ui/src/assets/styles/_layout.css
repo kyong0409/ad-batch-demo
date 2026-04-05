@@ -1,0 +1,132 @@
+/**
+ * 페이지 레이아웃 공통 스타일
+ * DSCore Token System 기반
+ */
+
+/* 페이지 컨테이너 */
+.page-content {
+  padding: var(--dsx-space-9);
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dsx-space-8);
+}
+
+/* 페이지 헤더 */
+.page-header {
+  background: var(--dsx-color-neutral-surface-default);
+  border-radius: var(--dsx-radius-xlarge);
+  padding: var(--dsx-space-7);
+  box-shadow: var(--dsx-shadow-md);
+}
+
+.page-title {
+  font-size: var(--dsx-font-size-heading3);
+  font-weight: var(--dsx-font-weight-bold);
+  color: var(--dsx-color-neutral-text-default);
+  margin: 0;
+}
+
+/* 검색 섹션 */
+.search-section {
+  background: var(--dsx-color-neutral-surface-default);
+  border-radius: var(--dsx-radius-xlarge);
+  padding: var(--dsx-space-7);
+  box-shadow: var(--dsx-shadow-md);
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dsx-space-5);
+  align-items: flex-end;
+}
+
+/* BaseSearchForm 인라인 레이아웃: 라벨을 인풋 좌측에 배치 */
+.search-form--inline .form-group {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--dsx-space-3);
+}
+
+.search-form--inline .form-label {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* BaseSearchForm 인라인 인풋/셀렉트: 최소 너비 + 남은 공간 채움 */
+.search-form--inline .form-group .form-input,
+.search-form--inline .form-group .form-select {
+  flex: 1;
+  min-width: 160px;
+}
+
+/* 리스트 섹션 */
+.list-section {
+  background: var(--dsx-color-neutral-surface-default);
+  border-radius: var(--dsx-radius-xlarge);
+  padding: var(--dsx-space-7);
+  box-shadow: var(--dsx-shadow-md);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--dsx-space-5);
+}
+
+.section-title {
+  font-size: var(--dsx-font-size-body1);
+  font-weight: var(--dsx-font-weight-bold);
+  color: var(--dsx-color-neutral-text-default);
+  margin: 0;
+}
+
+.total-count {
+  font-weight: var(--dsx-font-weight-regular);
+  color: var(--dsx-color-neutral-text-alternative);
+}
+
+.header-actions {
+  display: flex;
+  gap: var(--dsx-space-3);
+}
+
+/* 카드 */
+.card {
+  background: var(--dsx-color-neutral-surface-default);
+  border-radius: var(--dsx-radius-xlarge);
+  padding: var(--dsx-space-7);
+  box-shadow: var(--dsx-shadow-md);
+}
+
+/* 섹션 구분 */
+.section-divider {
+  height: 1px;
+  background: var(--dsx-color-neutral-border-alternative);
+  margin: var(--dsx-space-7) 0;
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: var(--dsx-space-5);
+    gap: var(--dsx-space-5);
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-form--inline .form-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--dsx-space-4);
+  }
+}
