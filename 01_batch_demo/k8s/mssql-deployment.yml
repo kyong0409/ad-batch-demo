@@ -81,7 +81,7 @@ spec:
             - |
               echo "Waiting for MSSQL to be ready..."
               for i in $(seq 1 30); do
-                /opt/mssql-tools/bin/sqlcmd \
+                /opt/mssql-tools18/bin/sqlcmd \
                   -S mssql-service,1433 \
                   -U SA \
                   -P "BatchDemo2026!" \
@@ -98,7 +98,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              /opt/mssql-tools/bin/sqlcmd \
+              /opt/mssql-tools18/bin/sqlcmd \
                 -S mssql-service,1433 \
                 -U SA \
                 -P "BatchDemo2026!" \
