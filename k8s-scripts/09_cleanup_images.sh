@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+REGISTRY="kyong0409"
 IMAGE_NAMES=("ad-batch-demo" "failing-batch-demo" "batch-api" "batch-ui" "enterprise-batch" "enterprise-failing-batch")
 NAMESPACE="ad-batch"
 
@@ -16,7 +17,8 @@ for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
   echo "--- ${IMAGE_NAME} ---"
 
   # minikube에 있는 해당 이미지 목록 (latest 제외하고 정리)
-  ALL_TAGS=$(minikube image ls 2>/dev/null | grep "${IMAGE_NAME}:" | sed "s/.*${IMAGE_NAME}://" | sort -V)
+  FULL_IMAGE="${REGISTRY}/${IMAGE_NAME}"
+  ALL_TAGS=$(minikube image ls 2>/dev/null | grep "${FULL_IMAGE}:" | sed "s/.*${IMAGE_NAME}://" | sort -V)
   LATEST_TAG=$(echo "$ALL_TAGS" | tail -n 1)
 
   if [ -z "$ALL_TAGS" ]; then
@@ -28,8 +30,8 @@ for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
 
   for TAG in $ALL_TAGS; do
     if [ "$TAG" != "$LATEST_TAG" ]; then
-      echo "  삭제: docker.io/library/${IMAGE_NAME}:${TAG}"
-      minikube ssh -- docker rmi -f "docker.io/library/${IMAGE_NAME}:${TAG}" &>/dev/null || true
+      echo "  삭제: docker.io/${FULL_IMAGE}:${TAG}"
+      minikube ssh -- docker rmi -f "docker.io/${FULL_IMAGE}:${TAG}" &>/dev/null || true
     fi
   done
   echo "  정리 완료."
