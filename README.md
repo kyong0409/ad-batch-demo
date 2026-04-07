@@ -24,14 +24,14 @@ Apple Silicon Mac에서 Docker Desktop 사용 시 Rosetta 설정이 필요합니
    ```
 2. Docker Desktop → Settings → General → **"Use Rosetta for x86_64/amd64 emulation on Apple Silicon"** 체크 활성화
 
-### 병렬 빌드 스크립트 추가
+### 병렬 배포 스크립트 추가
 
-`00-1_build_all.sh` 스크립트가 추가되었습니다. 01~06번 이미지를 **병렬로 동시 빌드**합니다.
+`00-1_build_all.sh` 스크립트가 추가되었습니다. 01~06번 이미지를 Docker Hub에서 pull 받아 **병렬로 클러스터에 배포**합니다.
 
 ```bash
 cd k8s-scripts
 ./00_setup.sh          # 1) 인프라 셋업
-./00-1_build_all.sh    # 2) 전체 이미지 병렬 빌드
+./00-1_build_all.sh    # 2) 전체 이미지 pull & 병렬 배포
 ./07_register_dags.sh  # 3) DAG 등록
 ./08_port_forward.sh   # 4) 포트 포워딩
 ```
@@ -280,7 +280,7 @@ cd k8s-scripts
 # 1단계: 인프라 셋업 (minikube, namespace, MSSQL, Airflow, Ingress)
 ./00_setup.sh
 
-# 2단계: 전체 이미지 병렬 빌드 및 배포
+# 2단계: 전체 이미지 pull & 병렬 배포
 ./00-1_build_all.sh
 
 # 3단계: DAG 등록
@@ -290,7 +290,7 @@ cd k8s-scripts
 ./08_port_forward.sh
 ```
 
-> `00-1_build_all.sh`는 01~06번 이미지를 병렬로 동시 빌드합니다.  
+> `00-1_build_all.sh`는 01~06번 이미지를 Docker Hub에서 pull 받아 병렬로 클러스터에 배포합니다.  
 > 개별 빌드가 필요한 경우 `01_api_update_image.sh` ~ `06_enterprise_failing_batch_update_image.sh`를 직접 실행할 수 있습니다.
 
 ### 1-4. hosts 파일 설정
