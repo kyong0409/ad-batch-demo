@@ -9,7 +9,7 @@ NAMESPACE="ad-batch"
 echo "========== Minikube 확인 =========="
 if ! minikube status --format='{{.Host}}' 2>/dev/null | grep -q "Running"; then
   echo "minikube가 실행중이지 않습니다. 시작합니다 (8GB RAM, 4 CPU)..."
-  minikube start --memory=8192 --cpus=4
+  minikube start --memory=8192 --cpus=4 --driver=docker
 else
   echo "Minikube is already running."
 fi
@@ -92,7 +92,7 @@ echo "  Setup 완료!"
 echo "========================================="
 echo ""
 echo "hosts 파일에 추가:"
-echo "  127.0.0.1  ui.batch.local api.batch.local airflow.batch.local"
+echo "  127.0.0.1  ui.batch.local airflow.batch.local"
 echo ""
 echo "다음 단계:"
 echo "  01: 배치 API 서버 이미지 빌드 (batch-api)"
