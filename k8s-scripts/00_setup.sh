@@ -40,7 +40,17 @@ else
   }
 fi
 
-# ── 5. Airflow ──
+# ── 5. DAG ConfigMap 등록 (Airflow 설치 전에 먼저 생성) ──
+echo "========== DAG ConfigMap 등록 =========="
+kubectl create configmap ad-batch-dags \
+  --from-file=ad_batch_dag.py="${PROJECT_ROOT}/01_batch_demo/k8s/airflow/dags/ad_batch_dag.py" \
+  --from-file=data_sync_dag.py="${PROJECT_ROOT}/04_failing-batch-demo/k8s/airflow/dags/data_sync_dag.py" \
+  --from-file=enterprise_batch_dag.py="${PROJECT_ROOT}/05_enterprise-batch/k8s/airflow/dags/enterprise_batch_dag.py" \
+  --from-file=order_sync_dag.py="${PROJECT_ROOT}/06_enterprise-failing-batch/k8s/airflow/dags/order_sync_dag.py" \
+  --namespace "${NAMESPACE}" \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+# ── 6. Airflow ──
 echo "========== Airflow 설치 =========="
 HELM_RELEASE="airflow"
 HELM_CHART="apache-airflow/airflow"
@@ -57,7 +67,7 @@ else
     --timeout 30m
 fi
 
-# ── 6. Ingress addon ──
+# ── 7. Ingress addon ──
 echo "========== Ingress Addon =========="
 minikube addons enable ingress
 echo "Waiting for ingress controller to be ready..."
@@ -94,5 +104,5 @@ echo ""
 echo "hosts 파일에 추가:"
 echo "  127.0.0.1  ui.batch.local airflow.batch.local"
 echo ""
-echo "다음 단계: ./00-1_build_all.sh 를 실행하세요 (전체 이미지 병렬 빌드)"
+echo "다음 단계: ./00-1_build_all.sh 를 실행하세요 (전체 이미지 pull & 병렬 배포)"
 echo "========================================="
