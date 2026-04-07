@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: mssql
-          image: mcr.microsoft.com/azure-sql-edge:latest
+          image: mcr.microsoft.com/mssql/server:2022-latest
           ports:
             - containerPort: 1433
           env:
@@ -74,26 +74,26 @@ spec:
     spec:
       initContainers:
         - name: wait-for-mssql
-          image: mcr.microsoft.com/azure-sql-edge:latest
+          image: busybox:1.36
           command:
-            - /bin/bash
+            - sh
             - -c
             - |
-              echo "Waiting for MSSQL to be ready..."
-              for i in $(seq 1 30); do
-                /opt/mssql-tools18/bin/sqlcmd \
-                  -S mssql-service,1433 \
-                  -U SA \
-                  -P "BatchDemo2026!" \
-                  -C \
-                  -Q "SELECT 1" > /dev/null 2>&1 && echo "MSSQL is ready" && exit 0
+              echo "Waiting for MSSQL to be ready on mssql-service:1433..."
+              for i in $(seq 1 60); do
+                if nc -z mssql-service 1433 2>/dev/null; then
+                  echo "MSSQL port is open, waiting 10s for full startup..."
+                  sleep 10
+                  echo "MSSQL is ready"
+                  exit 0
+                fi
                 echo "Attempt $i: MSSQL not ready, waiting 5s..."
                 sleep 5
               done
               echo "MSSQL did not become ready in time" && exit 1
       containers:
         - name: create-db
-          image: mcr.microsoft.com/azure-sql-edge:latest
+          image: mcr.microsoft.com/mssql/server:2022-latest
           command:
             - /bin/bash
             - -c

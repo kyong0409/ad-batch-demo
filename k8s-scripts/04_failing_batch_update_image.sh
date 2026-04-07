@@ -8,12 +8,8 @@ BASE_DIR="${PROJECT_ROOT}/04_failing-batch-demo"
 
 echo "========== [${IMAGE_NAME}] 이미지 빌드 =========="
 
-# 1. Gradle build
-echo "--- Gradle bootJar ---"
+# 1. Docker build (멀티스테이지 Dockerfile 내에서 Gradle 빌드 포함)
 cd "$BASE_DIR"
-./gradlew bootJar
-
-# 2. Docker build
 echo "--- Docker build ---"
 docker build --no-cache -t "${IMAGE_NAME}:latest" .
 

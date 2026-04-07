@@ -16,4 +16,8 @@ echo "  Airflow: http://airflow.batch.local (admin/admin)"
 echo ""
 echo "종료하려면 Ctrl+C 를 누르세요."
 echo "========== Port Forward Start =========="
-kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 80:80 443:443
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OSTYPE" == "win32" ]]; then
+  kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 80:80 443:443
+else
+  sudo kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 80:80 443:443
+fi
