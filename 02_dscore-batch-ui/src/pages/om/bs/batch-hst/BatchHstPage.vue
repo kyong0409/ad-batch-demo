@@ -150,7 +150,7 @@
     </section>
 
     <!-- 배치 실행 상세 다이얼로그 -->
-    <BaseDialog v-model="detailOpen" title="배치 실행 상세" size="lg">
+    <BaseDialog v-model="detailOpen" title="배치 실행 상세" size="large">
       <!-- Step 정보 -->
       <div class="info-section">
         <label class="info-label">Step 정보</label>

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: batch-ui
-          image: batch-ui:latest
-          imagePullPolicy: Never
+          image: kyong0409/batch-ui:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:

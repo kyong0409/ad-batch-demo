@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: batch-api
-          image: batch-api:latest
-          imagePullPolicy: Never
+          image: kyong0409/batch-api:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

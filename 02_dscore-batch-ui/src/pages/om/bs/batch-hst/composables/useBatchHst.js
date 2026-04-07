@@ -53,7 +53,7 @@ export const useBatchHst = () => {
 
   /** 배치 실행 이력 상세 조회 */
   const fetchBatchHistoryDetail = async (jobExecutionId) => {
-    if (!jobExecutionId) return
+    if (jobExecutionId == null) return
     await execute(async () => {
       const { data: res } = await getBatchHistoryDetail(jobExecutionId)
       if (res.data) {
@@ -70,9 +70,9 @@ export const useBatchHst = () => {
           parameters,
           exitMessage,
         })
-        detailOpen.value = true
       }
     })
+    detailOpen.value = true
   }
 
   /** 배치 재실행 */

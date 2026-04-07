@@ -24,8 +24,8 @@ with DAG(
         task_id='run_daily_ad_stats',
         name='daily-ad-stats-batch',
         namespace='ad-batch',
-        image='ad-batch-demo:latest',
-        image_pull_policy='Never',
+        image='kyong0409/ad-batch-demo:latest',
+        image_pull_policy='Always',
         env_vars={
             'SPRING_PROFILES_ACTIVE': 'k8s',
         },

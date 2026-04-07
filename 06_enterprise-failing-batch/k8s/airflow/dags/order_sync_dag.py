@@ -23,8 +23,8 @@ with DAG(
         task_id='run_order_sync',
         name='enterprise-order-sync-batch',
         namespace='ad-batch',
-        image='enterprise-failing-batch:latest',
-        image_pull_policy='Never',
+        image='kyong0409/enterprise-failing-batch:latest',
+        image_pull_policy='Always',
         env_vars={
             'SPRING_PROFILES_ACTIVE': 'k8s',
         },
