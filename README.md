@@ -23,6 +23,7 @@ Apple Silicon Mac에서 Docker Desktop 사용 시 Rosetta 설정이 필요합니
    softwareupdate --install-rosetta
    ```
 2. Docker Desktop → Settings → General → **"Use Rosetta for x86_64/amd64 emulation on Apple Silicon"** 체크 활성화
+3. Apply & Restart
 
 ### 병렬 배포 스크립트 추가
 
