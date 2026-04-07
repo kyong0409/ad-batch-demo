@@ -30,10 +30,9 @@ Apple Silicon Mac에서 Docker Desktop 사용 시 Rosetta 설정이 필요합니
 
 ```bash
 cd k8s-scripts
-./00_setup.sh          # 1) 인프라 셋업
+./00_setup.sh          # 1) 인프라 셋업 + DAG 등록 + Airflow 설치
 ./00-1_build_all.sh    # 2) 전체 이미지 pull & 병렬 배포
-./07_register_dags.sh  # 3) DAG 등록
-./08_port_forward.sh   # 4) 포트 포워딩
+./08_port_forward.sh   # 3) 포트 포워딩
 ```
 
 ---
@@ -277,16 +276,13 @@ k3d image import "${IMAGE_NAME}:latest" -c ad-batch
 ```bash
 cd k8s-scripts
 
-# 1단계: 인프라 셋업 (minikube, namespace, MSSQL, Airflow, Ingress)
+# 1단계: 인프라 셋업 (minikube, namespace, MSSQL, DAG 등록, Airflow 설치, Ingress)
 ./00_setup.sh
 
 # 2단계: 전체 이미지 pull & 병렬 배포
 ./00-1_build_all.sh
 
-# 3단계: DAG 등록
-./07_register_dags.sh
-
-# 4단계: 포트 포워딩 (Ingress 접속)
+# 3단계: 포트 포워딩 (Ingress 접속)
 ./08_port_forward.sh
 ```
 
